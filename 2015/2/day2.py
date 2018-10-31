@@ -31,6 +31,6 @@ def getRibbon(packages):
     return total
 
 if __name__ == '__main__':
-    packages = Packages(input)
+    packages = PackageList(input)
     print("Day 2 Part 1: %i" % totalWrappingPaper(packages))
     print("Day 2 Part 2: %i" % getRibbon(packages))
