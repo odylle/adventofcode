@@ -8,7 +8,7 @@ with open('input') as file:
     input = (file.read()).strip()
 
 
-##### Part 1 #####
+##### Part 1: Helper Functions #####
 def HasVowels(line):
     vowels = 'aeiou'
     vowel_count = 0
@@ -18,12 +18,12 @@ def HasVowels(line):
             if vowel_count == 3:
                 return True
 
-def HasDouble(line):
+def HasDoubles(line):
     for i in range(len(line[:-1])):
         if line[i] == line[i+1]:
             return True
 
-def Contains(line):
+def IsNaughty(line):
     naughty_list = ['ab','cd','pq','xy']
     for badstring in naughty_list:
         if badstring in line:
@@ -33,18 +33,38 @@ def Contains(line):
 def NiceLines(input):
     nice = 0
     for line in input.split():
-        v = HasVowels(line)
-        d = HasDouble(line)
-        c = Contains(line)
-        if v and d and not c:
+        vowels = HasVowels(line)
+        doubles = HasDoubles(line)
+        naughty = IsNaughty(line)
+        if vowels and doubles and not naughty:
             nice += 1
     return nice
 
 part1 = NiceLines(input)
-##### Part 2 #####
+##### Part 2: Helper Functions #####
+def HasComboString(line):
+    for i in range(len(line[:-2])):
+        combo = line[i]+line[i+1]
+        if combo in line[i+2:]:
+            return True
 
-#part2 = 
+def HasRepeat(line):
+    for i in range(len(line[:-2])):
+        if line[i] == line[i+2]:
+            return True
+
+##### Part 2 #####
+def MoreNiceLines(input):
+    nice = 0
+    for line in input.split():
+        combo = HasComboString(line)
+        repeat = HasRepeat(line)
+        if combo and repeat:
+            nice += 1
+    return nice
+
+part2 = MoreNiceLines(input) 
 
 if __name__ == '__main__':
     print("Day %s Part 1: %s" % (DAY, part1,))
-    #print("Day %s Part 2: %s" % (DAY, part2,))
+    print("Day %s Part 2: %s" % (DAY, part2,))
