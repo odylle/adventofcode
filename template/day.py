@@ -3,11 +3,7 @@ Advent of Code 2015
 """
 DAY = 
 
-# Get Input
-with open('input') as file:
-    input = (file.read()).strip()
-
-# Functions
+##### Functions #####
 
 
 if __name__ == '__main__':
